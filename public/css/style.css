@@ -1,0 +1,24 @@
+.nav-item {
+	margin-right: 10px;
+}
+
+.navbar-brand, .nav-link {
+	color: black !important;
+}
+
+.navbar {
+	background-color: #FFFFCC;
+	font-family: 'Kavivanar', cursive;
+}
+
+.jumbotron {
+	background-image: url(../images/ocean.jpg);
+	background-position: bottom;
+	background-size: cover;
+}
+
+.display-3 {
+	color: white;
+	font-family: 'Kavivanar', cursive;
+	text-align: right;
+}
