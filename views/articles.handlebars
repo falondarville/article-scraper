@@ -20,3 +20,18 @@
     <h1 class="display-3">Saved articles</h1>
   </div>
 </div>
+
+<div class="saved-articles">
+    {{#if saved-article}}
+      <div class="card">
+          <h5 class="card-header">{{saved-article-title}}</h5>
+          <div class="card-body">
+            <p class="card-text">{{saved-article-summary}}</p>
+            <a href="#" class="btn btn-primary">Article notes</a>
+            <a href="#" class="btn btn-primary">Delete from saved</a>
+        </div>
+      </div>
+    {{else}}
+      <h4 class="text-center">There are no saved articles yet.</h4>
+    {{/if}}
+</div>
