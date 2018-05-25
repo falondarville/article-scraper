@@ -2,7 +2,6 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var nodemon = require('nodemon');
 
-
 var app = express();
 var PORT = process.env.PORT || 3000;
 
