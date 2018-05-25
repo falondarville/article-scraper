@@ -2,6 +2,15 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var nodemon = require('nodemon');
 
+const mongoose = require('mongoose');
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/blogwebsite";
+
+mongoose.Promise = Promise;
+
+mongoose.connect(MONGODB_URI, {}, function(err) {
+	console.log(err);
+});
+
 var app = express();
 var PORT = process.env.PORT || 3000;
 

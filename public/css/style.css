@@ -7,8 +7,8 @@
 }
 
 .navbar {
-	background-color: #FFFFCC;
-	font-family: 'Kavivanar', cursive;
+	background-color: white;
+	font-family: 'Oswald', sans-serif;
 }
 
 .jumbotron {
@@ -19,6 +19,6 @@
 
 .display-3 {
 	color: white;
-	font-family: 'Kavivanar', cursive;
+	font-family: 'Oswald', sans-serif;
 	text-align: right;
 }
