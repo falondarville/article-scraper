@@ -10,21 +10,47 @@ var collections = ["articles"];
 
 var db = mongojs(databaseUrl, collections);
 
+app.get('/', function(req, res){
+	db.articles.find({}, function(error, found){
+		if(error){
+			console.log(error);
+		} else {
+			res.json(found);
+		}
+	})
+})
+
 // scrapes the content from my personal website. Note that when the user clicks on the scrape button, we will need to check if the data has already been added, so that we do not have duplicate data.
 // this should be an on click function
-app.get('/scrape', function(req, res){
+$(".btn-warning").click(function(){
 
-	request("https://www.falondarville.com/blog", function(error, response, html) {
+	app.get('/scrape', function(req, res){
 
-	  var $ = cheerio.load(html);
+		request("https://www.falondarville.com/blog", function(error, response, html) {
 
-	  $("div.singular-post-information").each(function(i, element) {
+		  var $ = cheerio.load(html);
 
-	    var title = $(element).children("h4").text();
-	    var summary = $(element).children("p").text();
+		  $("div.singular-post-information").each(function(i, element) {
 
-	    db.articles.insert({title: title, summary: summary})
+		    var title = $(element).children("h4").text();
+		    var summary = $(element).children("p").text();
+		    var link = $(element).children("a").attr("href");
 
-	  	res.status(200).send();
-	});
+		    if(title && summary && link) {
+		    	db.articles.insert({
+		    		title: title, 
+		    		summary: summary,
+		    		link: link
+		    	})
+		    }, 
+		    function(err, inserted){
+		    	if(err){
+		    		console.log(err);
+		    	} else {
+		    		console.log(inserted);
+		    	}
+		    }
+		  	res.status(200).send("Scraoing done.");
+		});
+	})
 })
