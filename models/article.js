@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 
 var ArticleSchema = new mongoose.Schema({
-	title: String,
+	title: {
+		type: String,
+		unique: true
+	},
 	summary: String,
 	link: String
 });

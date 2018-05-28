@@ -4,14 +4,10 @@ var mongoose = require("mongoose");
 var request = require("request");
 var cheerio = require("cheerio");
 var router = express.Router();
+var article = require('./../models/article')
 
-var databaseUrl = "blogwebsite";
-var collections = ["articles"];
-
-var db = mongoose(databaseUrl, collections);
-
-app.get('/', function(req, res){
-	db.articles.find({}, function(error, found){
+router.get('/', function(req, res){
+	article.find({}, function(error, found){
 		if(error){
 			console.log(error);
 		} else {
@@ -31,10 +27,13 @@ router.get('/scrape', function(req, res){
 
 	    var title = $(element).children("h4").text();
 	    var summary = $(element).children("p").text();
-	    var link = $(element).children("a").attr("href");
+	    var link = $(element).parent().attr("href");
+
+		console.log({title, summary, link})
 
 	    if(title && summary && link) {
-	    	db.articles.insert({
+	    	
+	    	article.create({
 	    		title: title, 
 	    		summary: summary,
 	    		link: link
