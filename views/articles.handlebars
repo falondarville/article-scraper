@@ -30,7 +30,28 @@
             <h5 class="card-header">{{this.title}}</h5>
             <div class="card-body">
               <p class="card-text">{{this.summary}}</p>
-              <a href="#" class="btn btn-primary">Article notes</a>
+
+              {{!-- leave a comment, delete a comment, show comments --}}
+              <form action="">
+                  <div class="form-group">
+                    <label for="comment">Leave a comment</label>
+                    <textarea class="form-control" id="comment" rows="3"></textarea>
+                  </div>
+              </form>
+
+              {{!-- prints comments from database associated with the article --}}
+              <h4>Comments left previously</h4>
+              <hr>
+              {{#if comments}}
+                {{#each comments}}
+                  <p>{{this.comments}}</p>
+                  <button class="btn btn-primary delete-comment" data-id="{{ this.id }}">Delete this comment</button>
+                {{/each}}
+                {{else}}
+                    <p>No comments added yet. </p>
+              {{/if}}
+              
+              <br>
               <button class="btn btn-primary delete-button" data-id="{{ this.id }}">Delete from saved</button>
           </div>
         </div>
