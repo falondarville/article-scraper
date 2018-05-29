@@ -6,13 +6,13 @@ var cheerio = require("cheerio");
 var router = express.Router();
 var article = require('./../models/article')
 
+// renders the homepage with the articles that exist in the database
 router.get('/', function(req, res){
 	article.find({}, function(error, found){
-		if(error){
-			console.log(error);
-		} else {
-			res.json(found);
-		}
+		console.log(found);
+		res.render('home', {
+			article: found
+		});
 	})
 })
 
@@ -46,7 +46,7 @@ router.get('/scrape', function(req, res){
 	    	})
 	    }
 	})
-	res.status(200).send("Scraping done.");
+	res.redirect('/');
 	})
 })
 
