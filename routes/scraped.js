@@ -16,6 +16,25 @@ router.get('/', function(req, res){
 	})
 })
 
+router.get('/saved', function(req, res){
+	article.find({}, function(error, found){
+		console.log(found);
+	res.render('articles', {
+			article: found
+	});
+	})
+})
+
+router.put('/articles/:id', function(request, response){
+
+	var id = request.params.id;
+
+	console.log(id);
+	article.update({ _id: id }, { $set: { saved: true }}, function(result){
+		response.status(200).json({message: 'changed saved status'})
+	})
+})
+
 // scrapes the content from my personal website. Note that when the user clicks on the scrape button, we will need to check if the data has already been added, so that we do not have duplicate data.
 router.get('/scrape', function(req, res){
 
