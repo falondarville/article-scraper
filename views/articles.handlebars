@@ -37,7 +37,9 @@
                     <label for="comment">Leave a comment</label>
                     <textarea class="form-control" id="comment" rows="3"></textarea>
                   </div>
+                  <button class="btn btn-primary float-right">Submit comment</button>
               </form>
+              <br><br>
 
               {{!-- prints comments from database associated with the article --}}
               <h4>Comments left previously</h4>
@@ -50,9 +52,10 @@
                 {{else}}
                     <p>No comments added yet. </p>
               {{/if}}
-              
+
+              {{!-- move saved article back to home page --}}
               <br>
-              <button class="btn btn-primary delete-button" data-id="{{ this.id }}">Delete from saved</button>
+              <button class="btn btn-primary delete-button float-right" data-id="{{ this.id }}">Delete from saved</button>
           </div>
         </div>
       {{/if}}
