@@ -1,6 +1,7 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
 var nodemon = require('nodemon');
+var bodyParser = require('body-parser');
 
 var scrapedRoute = require('./routes/scraped')
 
@@ -14,6 +15,8 @@ mongoose.connect(MONGODB_URI, {}, function(err) {
 });
 
 var app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 var PORT = process.env.PORT || 3000;
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));

@@ -9,7 +9,6 @@ var article = require('./../models/article')
 // renders the homepage with the articles that exist in the database
 router.get('/', function(req, res){
 	article.find({}, function(error, found){
-		console.log(found);
 		res.render('home', {
 			article: found
 		});
@@ -18,7 +17,6 @@ router.get('/', function(req, res){
 
 router.get('/saved', function(req, res){
 	article.find({}, function(error, found){
-		console.log(found);
 	res.render('articles', {
 			article: found
 	});
@@ -28,9 +26,7 @@ router.get('/saved', function(req, res){
 router.put('/articles/:id', function(request, response){
 
 	var id = request.params.id;
-
-	console.log(id);
-	article.update({ _id: id }, { $set: { saved: true }}, function(result){
+	article.update({ _id: id }, { $set: { saved: request.body.saved }}, function(result){
 		response.status(200).json({message: 'changed saved status'})
 	})
 })

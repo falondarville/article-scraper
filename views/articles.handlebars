@@ -21,16 +21,17 @@
   </div>
 </div>
 
+<div class="container">
 <div class="saved-articles">
     {{#if article}}
      {{#each article}}
       {{#if saved}}
-        <div class="card">
+        <div class="card mb-3">
             <h5 class="card-header">{{this.title}}</h5>
             <div class="card-body">
               <p class="card-text">{{this.summary}}</p>
               <a href="#" class="btn btn-primary">Article notes</a>
-              <a href="#" class="btn btn-primary">Delete from saved</a>
+              <button class="btn btn-primary delete-button" data-id="{{ this.id }}">Delete from saved</button>
           </div>
         </div>
       {{/if}}
@@ -38,4 +39,5 @@
     {{else}}
       <h4 class="text-center">There are no saved articles yet.</h4>
     {{/if}}
+</div>
 </div>
