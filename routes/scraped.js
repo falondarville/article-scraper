@@ -23,6 +23,14 @@ router.get('/saved', function(req, res){
 	})
 })
 
+router.post('/comment', function(request, response){
+
+	var id = request.body.id;
+	article.update({ _id: id }, {$push: { comments: request.body.comment }}, function(result){
+		response.redirect('/saved')
+	})
+})
+
 router.put('/articles/:id', function(request, response){
 
 	var id = request.params.id;

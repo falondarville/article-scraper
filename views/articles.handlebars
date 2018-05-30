@@ -32,10 +32,11 @@
               <p class="card-text">{{this.summary}}</p>
 
               {{!-- leave a comment, delete a comment, show comments --}}
-              <form action="">
+              <form action="/comment" method="POST">
+                <input type="hidden" name="id" value="{{this.id}}">
                   <div class="form-group">
                     <label for="comment">Leave a comment</label>
-                    <textarea class="form-control" id="comment" rows="3"></textarea>
+                    <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
                   </div>
                   <button class="btn btn-primary float-right">Submit comment</button>
               </form>
@@ -46,8 +47,10 @@
               <hr>
               {{#if comments}}
                 {{#each comments}}
-                  <p>{{this.comments}}</p>
-                  <button class="btn btn-primary delete-comment" data-id="{{ this.id }}">Delete this comment</button>
+                  <br>
+                  <p>{{this}}<button class="btn btn-primary delete-comment float-right" data-id="{{ this.id }}">Delete this comment</button></p>
+                  <br>
+                  <hr>
                 {{/each}}
                 {{else}}
                     <p>No comments added yet. </p>
