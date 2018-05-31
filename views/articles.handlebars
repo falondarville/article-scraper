@@ -48,7 +48,7 @@
               {{#if comments}}
                 {{#each comments}}
                   <br>
-                  <p>{{this}}<button class="btn btn-primary delete-comment float-right" data-id="{{ this.id }}">Delete this comment</button></p>
+                  <p>{{this}}<button class="btn btn-light delete-comment float-right" data-id="{{ ../id }}" data-index="{{@index}}">Delete this comment</button></p>
                   <br>
                   <hr>
                 {{/each}}
