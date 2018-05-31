@@ -25,8 +25,12 @@ router.get('/saved', function(req, res){
 
 router.delete('/articles/:id/comment/:index', function(req, res){
 	var id = req.params.id;
-	article.update({ _id: id }, {$pop: {comments: req.params.index}}, function(result){
-		res.status(200).json({message: 'comment deleted'})
+	let unsetValue = {};
+	unsetValue['comments.' + req.params.index] = 1;
+	article.update({ _id: id }, {$unset: unsetValue}, function(result){
+		article.update({ _id: id }, {$pull: {comments: null}}, function(response){
+			res.status(200).json({message: 'comment deleted'})
+		})
 	})
 })
 
