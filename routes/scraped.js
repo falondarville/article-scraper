@@ -67,15 +67,16 @@ router.get('/scrape', function(req, res){
 
 	    if(title && summary && link) {
 	    	// check if the article has already been added, if not, then add the new article
-	    	article.find({ title: title }, function(err, data){
+	    	article.find({ title }, function(err, data){
 	    		if(err){
+	    			res.status(404).send(err.toString())
+	    		} 
+	    		if(data.length === 0){
 	    			article.create({
-		    			title: title, 
-		    			summary: summary,
-		    			link: link
-		    	})
-	    		} else {
-	    			return
+	    				title,
+	    				summary,
+	    				link
+	    			})
 	    		}
 	    	})
 	    }
