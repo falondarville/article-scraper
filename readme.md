@@ -4,6 +4,8 @@ This is an article scraper application that scrapes from my personal website and
 
 This application was deployed on Heroku. Please note that I am running this application on a free tier of the service, so you may be greeted by an error page when first landing on the page. That's normal. It likely means that the "dynos" are asleep. Give them several seconds to wake up and then refresh the page. 
 
+[Use the application here](https://frozen-stream-68653.herokuapp.com/)
+
 ## Technologies and Methods Used
 
 JavaScript, jQuery, HTML/CSS, MongoDB, npm packages: express, body-parser, cheerio (for scraping), request, express-handlebars, mongoose
